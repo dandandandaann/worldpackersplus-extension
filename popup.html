@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Worldpackers Plus</title>
+    <style>
+        body {
+            width: 150px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup-container {
+            display: inherit;
+            justify-content: inherit;
+            align-items: inherit;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-family: "Roboto", Arial, Helvetica, sans-serif;
+
+            width: inherit;
+            height: inherit;
+        }
+
+        .heart {
+            color: #e25555;
+            font-size: 18px;
+            font-weight: bolder;
+        }
+
+        .notalink {
+            text-decoration: none;
+            font-family: inherit;
+            color: black;
+        }
+
+        .heart-shape {
+            position: relative;
+            width: 8px;
+            height: 8px;
+            -webkit-transform: rotate(45deg);
+            -moz-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            -o-transform: rotate(45deg);
+            transform: rotate(45deg);
+            background-color: #e25555;
+            margin-top: 3px;
+            margin-bottom: 0px;
+            margin-left: 6px;
+            margin-right: 6px;
+        }
+
+        .heart-shape:before,
+        .heart-shape:after {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            content: '';
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            -o-border-radius: 50%;
+            border-radius: 50%;
+            background-color: #e25555;
+        }
+
+        .heart-shape:before {
+            bottom: 0px;
+            left: -4px;
+        }
+
+        .heart-shape:after {
+            top: -4px;
+            right: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="popup-container">
+        <!-- Made with <span class="heart">&hearts;</span> by a&nbsp; -->
+        Made with <div class="heart-shape"></div> by a&nbsp;
+        <a class="notalink" href="https://www.worldpackers.com/users/417051">volunteer</a>
+    </div>
+
+</body>
+
+</html>

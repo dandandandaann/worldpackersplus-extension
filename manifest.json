@@ -1,0 +1,33 @@
+{
+    "name": "Worldpackers  Plus",
+    "version": "1.0.0",
+    "description": "This extension will improve Worldpackers site",
+    "permissions": [
+        "activeTab",
+        "declarativeContent",
+        "storage"
+    ],
+    "background": {
+        "scripts": [
+            "background.js"
+        ],
+        "persistent": false
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "https://www.worldpackers.com/*"
+            ],
+            "js": [
+                "work.js"
+            ]
+        }
+    ],
+    "web_accessible_resources": [
+        "database.json"
+    ],
+    "page_action": {
+        "default_popup": "popup.html"
+    },
+    "manifest_version": 2
+}
