@@ -1,6 +1,6 @@
 {
     "name": "WorldPackers Plus",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "This extension will improve Worldpackers site",
     "permissions": [
         "activeTab",
