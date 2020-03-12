@@ -8,7 +8,12 @@ City Databases:
 
 async function werkWerkWerk() {
 
-    // TODO: change this to const
+    // each method here is a feature
+    includeHostRegion();
+    linkHostInReview();
+}
+
+async function includeHostRegion() {
     const dbFile = chrome.runtime.getURL("database.json");
     const db = await getJsonFile(dbFile);
 
@@ -20,10 +25,25 @@ async function werkWerkWerk() {
     ];
 
     elementSelector.forEach((seletor) =>
-        document.querySelectorAll(seletor).forEach(
-            (el) => el.textContent = findRegion(el.textContent, db)
+        document.querySelectorAll(seletor).forEach((el) =>
+            el.textContent = findRegion(el.textContent, db)
         )
     );
+}
+
+async function linkHostInReview() {
+    const hostBaseUrl = 'https://www.worldpackers.com/locations/';
+
+    document.querySelectorAll("#profile-volunteer-experience > div.volunteer-experience > div.box_header div.info_holder > h4").forEach((el) => {
+        var hostName = el.innerText;
+        var hostHref = hostBaseUrl + hostName.toLowerCase().split(' ').join('-');
+
+        var hostImage = el.parentElement.parentElement.parentElement.parentElement.querySelector("div.volunteer-experience__review:nth-child(2) > img");
+        var hostLink = document.createElement('a');
+        hostLink.href = hostHref;
+        hostImage.parentNode.insertBefore(hostLink, hostImage);
+        hostLink.appendChild(hostImage);
+    });
 }
 
 async function getJsonFile(file) {
@@ -49,6 +69,10 @@ function findRegion(city_country, db) {
         return city_country;
 
     return `${cityCountry[0]}, ${estados[0].name}, ${cityCountry[1]}`;
+}
+
+function log(qq) {
+    console.log(qq);
 }
 
 werkWerkWerk();
