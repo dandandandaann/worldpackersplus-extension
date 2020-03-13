@@ -11,6 +11,7 @@ async function werkWerkWerk() {
     // each method here is a feature
     includeHostRegion();
     linkHostInReview();
+    showReviewCount();
 }
 
 async function includeHostRegion() {
@@ -34,7 +35,7 @@ async function includeHostRegion() {
 async function linkHostInReview() {
     const hostBaseUrl = 'https://www.worldpackers.com/locations/';
 
-    document.querySelectorAll("#profile-volunteer-experience > div.volunteer-experience > div.box_header div.info_holder > h4").forEach((el) => {
+    document.querySelectorAll("#profile-volunteer-experience > div.volunteer-experience > div.box_header div.info_holder > h4").forEach(el => {
         var hostName = el.innerText;
         var hostHref = hostBaseUrl + hostName.toLowerCase().split(' ').join('-');
 
@@ -43,6 +44,27 @@ async function linkHostInReview() {
         hostLink.href = hostHref;
         hostImage.parentNode.insertBefore(hostLink, hostImage);
         hostLink.appendChild(hostImage);
+    });
+}
+
+async function showReviewCount() {
+    document.querySelectorAll('a.main-thumb').forEach(el => {
+        fetch(el.href).then(response => response.text()).then(html => {
+            const htmlDocument = new DOMParser().parseFromString(html, "text/html");
+            const rating = htmlDocument.documentElement.querySelectorAll('span.rating_count');
+            if (rating.length != 1)
+                return;
+
+            const hostInfo = el.querySelectorAll('div.info_holder > p');
+            if (hostInfo.length != 1)
+                return;
+
+            var reviewSpan = document.createElement('span');
+            reviewSpan.className = "text small";
+            reviewSpan.innerText = rating[0].innerText;
+
+            hostInfo[0].appendChild(reviewSpan);
+        });
     });
 }
 
